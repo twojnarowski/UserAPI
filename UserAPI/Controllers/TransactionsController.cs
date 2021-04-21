@@ -55,25 +55,8 @@ namespace UserAPI.Controllers
             return transaction;
         }
 
-        // GET: Transactions/Edit/5
-        [HttpGet("Transactions/Edit/{id}")]
-        public async Task<ActionResult<Transaction>> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transaction = await _context.Transactions.FindAsync(id);
-            if (transaction == null)
-            {
-                return NotFound();
-            }
-            return transaction;
-        }
-
         // POST: Transactions/Edit/5
-        [HttpPost("Transactions/Edit/{id}")]
+        [HttpPut("Transactions/Edit/{id}")]
         public async Task<ActionResult<Transaction>> Edit(int id, [Bind("Id,UserId,BoughtCurrencyId,BoughtCurrencyQuantity,SoldCurrencyId,SoldCurrencyQuantity")] Transaction transaction)
         {
             if (id != transaction.Id)
@@ -105,7 +88,7 @@ namespace UserAPI.Controllers
         }
 
         // POST: Transactions/Delete/5
-        [HttpPost("Transactions/Delete/{id}"), ActionName("Delete")]
+        [HttpDelete("Transactions/Delete/{id}"), ActionName("Delete")]
         public async Task<ActionResult<int>> DeleteConfirmed(int id)
         {
             var transaction = await _context.Transactions.FindAsync(id);

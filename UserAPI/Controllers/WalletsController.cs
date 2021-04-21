@@ -55,25 +55,8 @@ namespace UserAPI.Controllers
             return wallet;
         }
 
-        // GET: Wallets/Edit/5
-        [HttpGet("Wallets/Edit/{id}")]
-        public async Task<ActionResult<Wallet>> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var wallet = await _context.Wallets.FindAsync(id);
-            if (wallet == null)
-            {
-                return NotFound();
-            }
-            return wallet;
-        }
-
         // POST: Wallets/Edit/5
-        [HttpPost("Wallets/Edit/{id}")]
+        [HttpPut("Wallets/Edit/{id}")]
         public async Task<ActionResult<Wallet>> Edit(int id, [Bind("Id,UserId,CurrencyID,Quantity")] Wallet wallet)
         {
             if (id != wallet.Id)
@@ -105,7 +88,7 @@ namespace UserAPI.Controllers
         }
 
         // POST: Wallets/Delete/5
-        [HttpPost("Wallets/Delete/{id}"), ActionName("Delete")]
+        [HttpDelete("Wallets/Delete/{id}"), ActionName("Delete")]
         public async Task<ActionResult<int>> DeleteConfirmed(int id)
         {
             var wallet = await _context.Wallets.FindAsync(id);

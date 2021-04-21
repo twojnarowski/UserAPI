@@ -55,25 +55,8 @@ namespace UserAPI.Controllers
             return user;
         }
 
-        // GET: Users/Edit/5
-        [HttpGet("User/Edit/{id}")]
-        public async Task<ActionResult<User>> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return user;
-        }
-
         // POST: Users/Edit/5
-        [HttpPost("Users/Edit/{id}")]
+        [HttpPut("Users/Edit/{id}")]
         public async Task<ActionResult<User>> Edit(int id, [Bind("Id,Login,Email")] User user)
         {
             if (id != user.Id)
@@ -105,7 +88,7 @@ namespace UserAPI.Controllers
         }
 
         // POST: Users/Delete/5
-        [HttpPost("Users/Delete/{id}"), ActionName("Delete")]
+        [HttpDelete("Users/Delete/{id}"), ActionName("Delete")]
         public async Task<ActionResult<int>> DeleteConfirmed(int id)
         {
             var user = await _context.Users.FindAsync(id);
