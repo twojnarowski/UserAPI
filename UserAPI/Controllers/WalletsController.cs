@@ -23,6 +23,20 @@ namespace UserAPI.Controllers
             return await _context.Wallets.ToListAsync();
         }
 
+        // GET: Wallets for user
+        [HttpGet("Wallets/User/{id}")]
+        public async Task<ActionResult<IEnumerable<Wallet>>> UsersWallet(int? id)
+        {
+            if (id != null)
+            {
+                return await _context.Wallets.Where(s => s.UserId == id).ToListAsync();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         // GET: Wallets/Details/5
         [HttpGet("Wallets/Details/{id}")]
         public async Task<ActionResult<Wallet>> Details(int? id)
@@ -44,7 +58,7 @@ namespace UserAPI.Controllers
 
         // POST: Wallets/Create
         [HttpPost("Wallets/Create")]
-        public async Task<ActionResult<Wallet>> Create([Bind("Id,UserId,CurrencyID,Quantity")] Wallet wallet)
+        public async Task<ActionResult<Wallet>> Create([Bind("Id,UserId,CurrencyID,Quantity,Code,Symbol")] Wallet wallet)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +71,7 @@ namespace UserAPI.Controllers
 
         // POST: Wallets/Edit/5
         [HttpPut("Wallets/Edit/{id}")]
-        public async Task<ActionResult<Wallet>> Edit(int id, [Bind("Id,UserId,CurrencyID,Quantity")] Wallet wallet)
+        public async Task<ActionResult<Wallet>> Edit(int id, [Bind("Id,UserId,CurrencyID,Quantity,Code,Symbol")] Wallet wallet)
         {
             if (id != wallet.Id)
             {
