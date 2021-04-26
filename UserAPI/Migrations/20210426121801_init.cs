@@ -2,7 +2,7 @@
 
 namespace UserAPI.Migrations
 {
-    public partial class initialcommit : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,12 +10,11 @@ namespace UserAPI.Migrations
                 name: "Transactions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    BoughtCurrencyId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BoughtCurrencyId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BoughtCurrencyQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SoldCurrencyId = table.Column<int>(type: "int", nullable: false),
+                    SoldCurrencyId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SoldCurrencyQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -27,8 +26,7 @@ namespace UserAPI.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -41,11 +39,12 @@ namespace UserAPI.Migrations
                 name: "Wallets",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CurrencyID = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CurrencyID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Symbol = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

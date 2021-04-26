@@ -25,7 +25,7 @@ namespace UserAPI.Controllers
 
         // GET: Wallets for user
         [HttpGet("Wallets/User/{id}")]
-        public async Task<ActionResult<IEnumerable<Wallet>>> UsersWallet(int? id)
+        public async Task<ActionResult<IEnumerable<Wallet>>> UsersWallet(string? id)
         {
             if (id != null)
             {
@@ -39,7 +39,7 @@ namespace UserAPI.Controllers
 
         // GET: Wallets/Details/5
         [HttpGet("Wallets/Details/{id}")]
-        public async Task<ActionResult<Wallet>> Details(int? id)
+        public async Task<ActionResult<Wallet>> Details(string? id)
         {
             if (id == null)
             {
@@ -71,7 +71,7 @@ namespace UserAPI.Controllers
 
         // POST: Wallets/Edit/5
         [HttpPut("Wallets/Edit/{id}")]
-        public async Task<ActionResult<Wallet>> Edit(int id, [Bind("Id,UserId,CurrencyID,Quantity,Code,Symbol")] Wallet wallet)
+        public async Task<ActionResult<Wallet>> Edit(string id, [Bind("Id,UserId,CurrencyID,Quantity,Code,Symbol")] Wallet wallet)
         {
             if (id != wallet.Id)
             {
@@ -111,7 +111,7 @@ namespace UserAPI.Controllers
             return id;
         }
 
-        private bool WalletExists(int id)
+        private bool WalletExists(string id)
         {
             return _context.Wallets.Any(e => e.Id == id);
         }

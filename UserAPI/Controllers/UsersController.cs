@@ -25,7 +25,7 @@ namespace UserAPI.Controllers
 
         // GET: Users/Details/5
         [HttpGet("Users/Details/{id}")]
-        public async Task<ActionResult<User>> Details(int? id)
+        public async Task<ActionResult<User>> Details(string? id)
         {
             if (id == null)
             {
@@ -57,7 +57,7 @@ namespace UserAPI.Controllers
 
         // POST: Users/Edit/5
         [HttpPut("Users/Edit/{id}")]
-        public async Task<ActionResult<User>> Edit(int id, [Bind("Id,Login,Email")] User user)
+        public async Task<ActionResult<User>> Edit(string id, [Bind("Id,Login,Email")] User user)
         {
             if (id != user.Id)
             {
@@ -97,7 +97,7 @@ namespace UserAPI.Controllers
             return id;
         }
 
-        private bool UserExists(int id)
+        private bool UserExists(string id)
         {
             return _context.Users.Any(e => e.Id == id);
         }

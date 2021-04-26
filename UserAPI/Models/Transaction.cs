@@ -5,12 +5,12 @@ namespace UserAPI.Models
     public class Transaction
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        public int UserId { get; set; }
-        public int BoughtCurrencyId { get; set; }
+        public string UserId { get; set; }
+        public string BoughtCurrencyId { get; set; }
         public decimal BoughtCurrencyQuantity { get; set; }
-        public int SoldCurrencyId { get; set; }
+        public string SoldCurrencyId { get; set; }
         public decimal SoldCurrencyQuantity { get; set; }
     }
 }

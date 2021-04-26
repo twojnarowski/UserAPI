@@ -9,8 +9,8 @@ using UserAPI.Models;
 namespace UserAPI.Migrations
 {
     [DbContext(typeof(UserDBContext))]
-    [Migration("20210419111717_initialcommit")]
-    partial class initialcommit
+    [Migration("20210426121801_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,25 +22,23 @@ namespace UserAPI.Migrations
 
             modelBuilder.Entity("UserAPI.Models.Transaction", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("BoughtCurrencyId")
-                        .HasColumnType("int");
+                    b.Property<string>("BoughtCurrencyId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("BoughtCurrencyQuantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("SoldCurrencyId")
-                        .HasColumnType("int");
+                    b.Property<string>("SoldCurrencyId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("SoldCurrencyQuantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -49,10 +47,8 @@ namespace UserAPI.Migrations
 
             modelBuilder.Entity("UserAPI.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -67,19 +63,23 @@ namespace UserAPI.Migrations
 
             modelBuilder.Entity("UserAPI.Models.Wallet", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CurrencyID")
-                        .HasColumnType("int");
+                    b.Property<string>("CurrencyID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
