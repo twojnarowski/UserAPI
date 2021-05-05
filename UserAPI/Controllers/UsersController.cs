@@ -44,7 +44,7 @@ namespace UserAPI.Controllers
 
         // POST: Users/Create
         [HttpPost("Users/Create")]
-        public async Task<ActionResult<User>> Create([Bind("Id,Login,Email")] User user)
+        public async Task<ActionResult<User>> Create([FromBody] User user)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace UserAPI.Controllers
 
         // POST: Users/Edit/5
         [HttpPut("Users/Edit/{id}")]
-        public async Task<ActionResult<User>> Edit(string id, [Bind("Id,Login,Email")] User user)
+        public async Task<ActionResult<User>> Edit(string id, [FromBody] User user)
         {
             if (id != user.Id)
             {

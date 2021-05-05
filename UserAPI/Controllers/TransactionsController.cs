@@ -44,7 +44,7 @@ namespace UserAPI.Controllers
 
         // POST: Transactions/Create
         [HttpPost("Transactions/Create")]
-        public async Task<ActionResult<Transaction>> Create([Bind("Id,UserId,BoughtCurrencyId,BoughtCurrencyQuantity,SoldCurrencyId,SoldCurrencyQuantity")] Transaction transaction)
+        public async Task<ActionResult<Transaction>> Create([FromBody] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace UserAPI.Controllers
 
         // POST: Transactions/Edit/5
         [HttpPut("Transactions/Edit/{id}")]
-        public async Task<ActionResult<Transaction>> Edit(string id, [Bind("Id,UserId,BoughtCurrencyId,BoughtCurrencyQuantity,SoldCurrencyId,SoldCurrencyQuantity")] Transaction transaction)
+        public async Task<ActionResult<Transaction>> Edit(string id, [FromBody] Transaction transaction)
         {
             if (id != transaction.Id)
             {

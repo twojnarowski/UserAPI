@@ -58,7 +58,7 @@ namespace UserAPI.Controllers
 
         // POST: Wallets/Create
         [HttpPost("Wallets/Create")]
-        public async Task<ActionResult<Wallet>> Create([Bind("Id,UserId,CurrencyID,Quantity,Code,Symbol")] Wallet wallet)
+        public async Task<ActionResult<Wallet>> Create([FromBody] Wallet wallet)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace UserAPI.Controllers
 
         // POST: Wallets/Edit/5
         [HttpPut("Wallets/Edit/{id}")]
-        public async Task<ActionResult<Wallet>> Edit(string id, [Bind("Id,UserId,CurrencyID,Quantity,Code,Symbol")] Wallet wallet)
+        public async Task<ActionResult<Wallet>> Edit(string id, [FromBody] Wallet wallet)
         {
             if (id != wallet.Id)
             {
