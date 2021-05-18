@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserAPI.Models;
 
 namespace UserAPI.Controllers
 {
+    [EnableCors("AllowOrigin")]
+
     public class TransactionsController : Controller
     {
         private readonly UserDBContext _context;

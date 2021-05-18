@@ -24,6 +24,10 @@ namespace UserAPI
             services.AddControllers();
             services.AddDbContext<UserDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             services.AddControllersWithViews();
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserAPI", Version = "v1" });
@@ -41,6 +45,7 @@ namespace UserAPI
             }
 
             app.UseRouting();
+            app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseAuthorization();
 

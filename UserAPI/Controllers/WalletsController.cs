@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserAPI.Models;
 
 namespace UserAPI.Controllers
 {
+    [EnableCors("AllowOrigin")]
     public class WalletsController : Controller
     {
         private readonly UserDBContext _context;
