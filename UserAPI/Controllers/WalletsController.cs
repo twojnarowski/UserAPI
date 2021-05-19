@@ -71,11 +71,12 @@ namespace UserAPI.Controllers
             return wallet;
         }
 
-        // POST: Wallets/Edit/5
-        [HttpPut("Wallets/Edit/{id}")]
-        public async Task<ActionResult<Wallet>> Edit(string id, [FromBody] Wallet wallet)
+        // POST: Wallets/Edit
+        [HttpPut("Wallets/Edit")]
+        public async Task<ActionResult<Wallet>> Edit([FromBody] Wallet wallet)
         {
-            if (id != wallet.Id)
+            //string walletID = _context.Wallets.Where(s => s.UserId == wallet.UserId).Where(s => s.CurrencyID == wallet.CurrencyID).FirstOrDefault().Id;
+            if (wallet.Id == null)
             {
                 return NotFound();
             }
@@ -105,7 +106,7 @@ namespace UserAPI.Controllers
 
         // POST: Wallets/Delete/5
         [HttpDelete("Wallets/Delete/{id}"), ActionName("Delete")]
-        public async Task<ActionResult<int>> DeleteConfirmed(int id)
+        public async Task<ActionResult<string>> DeleteConfirmed(string id)
         {
             var wallet = await _context.Wallets.FindAsync(id);
             _context.Wallets.Remove(wallet);
